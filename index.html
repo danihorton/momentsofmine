@@ -3,47 +3,107 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moments of Mine </title>
+  <title>Moments of Mine</title>
+
+  <!-- Change fonts here using Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
+    /* ===== EASY CUSTOM SETTINGS ===== */
+    :root {
+      --heading-font: 'Playfair Display', serif;
+      --body-font: 'Poppins', sans-serif;
+
+      /* Logo background colour */
+      --main-bg: #9baa9f;
+      --card-bg: #ffffff;
+      --text-dark: #2f2a28;
+      --text-soft: #6f625d;
+
+      --primary-colour: #ffffff;
+      --secondary-colour: #e9eee9;
+      --accent-colour: #6f8176;
+      --footer-bg: #87998d;
+
+      --shadow: 0 10px 30px rgba(40, 60, 50, 0.16);
+      --radius: 24px;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background: #f7f8fc;
-      color: #1f2937;
+      background: var(--main-bg);
+      color: var(--text-dark);
       line-height: 1.6;
+      font-family: var(--body-font);
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    nav {
+      background: rgba(255, 255, 255, 0.92);
+      padding: 18px 20px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    nav a {
+      color: var(--text-dark);
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: var(--accent-colour);
     }
 
     header {
-      background: linear-gradient(135deg, #111827, #2563eb);
+      background: var(--main-bg);
       color: white;
-      padding: 70px 20px;
+      padding: 70px 20px 80px;
       text-align: center;
     }
 
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 15px;
+    .logo {
+      width: min(780px, 90vw);
+      display: block;
+      margin: 0 auto 28px;
     }
 
     header p {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 2vw, 1.15rem);
       max-width: 650px;
       margin: 0 auto 30px;
+      color: white;
     }
 
     .button {
       display: inline-block;
       background: white;
-      color: #2563eb;
+      color: var(--accent-colour);
       padding: 14px 24px;
       border-radius: 999px;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
       transition: 0.2s ease;
     }
 
@@ -52,54 +112,38 @@
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
-    nav {
-      background: white;
-      padding: 18px 20px;
-      text-align: center;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    nav a {
-      color: #374151;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
     section {
-      padding: 70px 20px;
+      padding: clamp(45px, 7vw, 70px) 20px;
       max-width: 1100px;
       margin: auto;
     }
 
     section h2 {
       text-align: center;
-      font-size: 2.2rem;
+      font-family: var(--heading-font);
+      font-size: clamp(2rem, 5vw, 2.4rem);
       margin-bottom: 20px;
-      color: #111827;
+      color: white;
     }
 
     .intro {
       text-align: center;
       max-width: 750px;
       margin: 0 auto 45px;
-      color: #4b5563;
+      color: white;
     }
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 25px;
     }
 
     .card {
-      background: white;
-      padding: 30px;
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+      background: var(--card-bg);
+      padding: clamp(24px, 4vw, 30px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
       transition: 0.2s ease;
     }
 
@@ -109,44 +153,99 @@
 
     .card h3 {
       margin-bottom: 12px;
-      color: #2563eb;
+      color: var(--accent-colour);
+      font-family: var(--heading-font);
+      font-size: 1.5rem;
     }
 
     .about {
-      background: white;
-      border-radius: 24px;
-      padding: 45px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: clamp(28px, 5vw, 45px);
+      box-shadow: var(--shadow);
+    }
+
+    /* ===== IMAGES SECTION ===== */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    .image-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .image-card img {
+      width: 100%;
+      height: clamp(220px, 30vw, 280px);
+      object-fit: cover;
+      display: block;
+    }
+
+    .image-card p {
+      padding: 18px;
+      color: var(--text-soft);
+      text-align: center;
     }
 
     .contact-box {
       text-align: center;
-      background: #111827;
+      background: var(--accent-colour);
       color: white;
-      border-radius: 24px;
-      padding: 50px 25px;
+      border-radius: var(--radius);
+      padding: clamp(35px, 6vw, 50px) 25px;
+      box-shadow: var(--shadow);
     }
 
     .contact-box a {
       color: white;
-      font-weight: bold;
+      font-weight: 700;
     }
 
     footer {
       text-align: center;
       padding: 30px 20px;
-      background: #e5e7eb;
-      color: #4b5563;
+      background: var(--footer-bg);
+      color: white;
+    }
+
+    @media (max-width: 900px) {
+      .logo {
+        width: min(680px, 92vw);
+      }
+
+      header {
+        padding: 55px 18px 65px;
+      }
     }
 
     @media (max-width: 600px) {
-      header h1 {
-        font-size: 2.2rem;
+      nav {
+        padding: 12px 10px;
       }
 
       nav a {
         display: inline-block;
-        margin: 8px;
+        margin: 6px 8px;
+        font-size: 0.92rem;
+      }
+
+      header {
+        padding: 45px 16px 55px;
+      }
+
+      .logo {
+        width: 94vw;
+        margin-bottom: 22px;
+      }
+
+      .cards,
+      .image-gallery {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -155,12 +254,14 @@
   <nav>
     <a href="#services">Services</a>
     <a href="#about">About</a>
+    <a href="#images">Images</a>
     <a href="#contact">Contact</a>
   </nav>
 
   <header>
-    <h1>Your Business Name</h1>
-    <p>A clean, professional website built for free using GitHub Pages. Replace this text with what you do and who you help.</p>
+    <!-- Save your uploaded logo in the same folder as this HTML file and name it logo.png -->
+    <img class="logo" src="logo.png" alt="Moments of Mine logo">
+    <p>A soft, personal website for sharing favourite memories, creative work, special events, or meaningful moments.</p>
     <a class="button" href="#contact">Get in Touch</a>
   </header>
 
@@ -171,7 +272,7 @@
     <div class="cards">
       <div class="card">
         <h3>Service One</h3>
-        <p>Describe your first service here. For example: website design, social media help, consulting, tutoring, repairs, or digital products.</p>
+        <p>Describe your first service here. For example: photography, memory books, event styling, content creation, or digital products.</p>
       </div>
       <div class="card">
         <h3>Service Two</h3>
@@ -187,9 +288,31 @@
   <section id="about">
     <h2>About</h2>
     <div class="about">
-      <p>Hello, I’m <strong>Your Name</strong>. I help people with <strong>your main skill or service</strong>. This website is a simple place to show what I offer, build trust, and make it easy for people to contact me.</p>
+      <p>Hello, I’m <strong>Your Name</strong>. I created <strong>Moments of Mine</strong> to share meaningful stories, beautiful images, and special memories.</p>
       <br />
       <p>Replace this section with a short story about who you are, what you do, and why someone should choose you.</p>
+    </div>
+  </section>
+
+  <section id="images">
+    <h2>Images</h2>
+    <p class="intro">Add your favourite photos here. Replace the image links below with your own image file names or online image links.</p>
+
+    <div class="image-gallery">
+      <div class="image-card">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Peaceful outdoor moment">
+        <p>Image caption one</p>
+      </div>
+
+      <div class="image-card">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Special celebration moment">
+        <p>Image caption two</p>
+      </div>
+
+      <div class="image-card">
+        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80" alt="Event moment">
+        <p>Image caption three</p>
+      </div>
     </div>
   </section>
 
@@ -202,7 +325,7 @@
   </section>
 
   <footer>
-    <p>&copy; 2026 Your Business Name. All rights reserved.</p>
+    <p>&copy; 2026 Moments of Mine. All rights reserved.</p>
   </footer>
 </body>
 </html>
